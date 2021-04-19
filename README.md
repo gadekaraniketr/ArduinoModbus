@@ -2,7 +2,7 @@
 Modbus interface on multiple port. 
 
 # Note:
-- Only Tested with Arduino Mega 2560
+- Only Tested with Arduino Mega 2560 and RTU devices.
 
 # OLD API
 1. ModbusRTUClient.begin(int BaudRate);
