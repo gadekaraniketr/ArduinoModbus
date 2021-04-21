@@ -1373,11 +1373,11 @@ modbus_t* modbus_new_rtu(const char *device,
 	
 #if defined(__AVR_ATmega2560__)
 	if(port == 1)
-		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE1, 1, 2, 3);
+		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE1, 18, 2, 3);
 	if(port == 2)
-		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE2, 1, 2, 3);
+		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE2, 16, 2, 3);
 	if(port == 3)
-		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE3, 1, 2, 3);
+		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE3, 14, 2, 3);
 #endif
 
     ctx_rtu->baud = baud;
