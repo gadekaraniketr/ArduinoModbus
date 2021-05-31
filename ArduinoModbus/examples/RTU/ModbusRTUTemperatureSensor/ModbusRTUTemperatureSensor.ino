@@ -4,6 +4,23 @@
   This sketch shows you how to interact with a Modbus RTU temperature and humidity sensor.
   It reads the temperature and humidity values every 5 seconds and outputs them to the
   serial monitor.
+
+  Circuit:
+   - MKR board
+   - Winners® Modbus RS485 Temperature and Humidity:
+     https://www.banggood.com/Modbus-RS485-Temperature-and-Humidity-Transmitter-Sensor-High-Precision-Monitoring-p-1159961.html?cur_warehouse=CN
+   - External 9-36 V power Supply
+   - MKR 485 shield
+     - ISO GND connected to GND of the Modbus RTU sensor and the Power supply V-
+     - Power supply V+ connected to V+ sensor
+     - Y connected to A/Y of the Modbus RTU sensor
+     - Z connected to B/Z of the Modbus RTU sensor
+     - Jumper positions
+       - FULL set to OFF
+       - Z \/\/ Y set to ON
+
+  created 8 August 2018
+  by Riccardo Rizzo
 */
 
 #include <ArduinoModbus.h>
@@ -17,7 +34,7 @@ void setup() {
 
   Serial.println("Modbus Temperature Humidity Sensor");
   // start the Modbus RTU client
-  if (!ModbusRTUClient.begin(0, 9600)) {
+  if (!ModbusRTUClient.begin(9600)) {
     Serial.println("Failed to start Modbus RTU Client!");
     while (1);
   }

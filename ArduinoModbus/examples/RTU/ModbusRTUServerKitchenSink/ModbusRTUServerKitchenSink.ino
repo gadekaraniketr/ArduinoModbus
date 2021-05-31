@@ -3,6 +3,19 @@
 
   This sketch creates a Modbus RTU Server and demostrates
   how to use various Modbus Server APIs.
+
+  Circuit:
+   - MKR board
+   - MKR 485 shield
+     - ISO GND connected to GND of the Modbus RTU server
+     - Y connected to A/Y of the Modbus RTU client
+     - Z connected to B/Z of the Modbus RTU client
+     - Jumper positions
+       - FULL set to OFF
+       - Z \/\/ Y set to OFF
+
+  created 18 July 2018
+  by Sandeep Mistry
 */
 
 #include <ArduinoRS485.h> // ArduinoModbus depends on the ArduinoRS485 library
@@ -20,7 +33,7 @@ void setup() {
   Serial.println("Modbus RTU Server Kitchen Sink");
 
   // start the Modbus RTU server, with (slave) id 42
-  if (!ModbusRTUServer.begin(0, 42, 9600)) {
+  if (!ModbusRTUServer.begin(42, 9600)) {
     Serial.println("Failed to start Modbus RTU Server!");
     while (1);
   }

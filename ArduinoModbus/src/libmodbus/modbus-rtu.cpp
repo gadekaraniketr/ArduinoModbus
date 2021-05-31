@@ -330,6 +330,7 @@ static ssize_t _modbus_rtu_send(modbus_t *ctx, const uint8_t *req, int req_lengt
     ctx_rtu->port->noReceive();
     ctx_rtu->port->beginTransmission();
     size = ctx_rtu->port->write(req, req_length);
+	ctx_rtu->port->flush();
     ctx_rtu->port->endTransmission();
     ctx_rtu->port->receive();
 
@@ -1373,11 +1374,11 @@ modbus_t* modbus_new_rtu(const char *device,
 	
 #if defined(__AVR_ATmega2560__)
 	if(port == 1)
-		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE1, 1, 2, 3);
+		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE1, 18, 2, 3);
 	if(port == 2)
-		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE2, 1, 2, 3);
+		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE2, 16, 2, 3);
 	if(port == 3)
-		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE3, 1, 2, 3);
+		ctx_rtu->port = new RS485Class(SERIAL_PORT_HARDWARE3, 14, 2, 3);
 #endif
 
     ctx_rtu->baud = baud;
